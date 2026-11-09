@@ -133,6 +133,8 @@ td:last-child{text-align:right;color:var(--mut)}
 
 footer{padding:48px 0 calc(48px + var(--barra));font-size:14px;color:var(--mut);text-align:center;line-height:2.1;border-top:1px solid var(--line)}
 footer a{color:var(--mut)}
+footer .bp-pie{display:inline-flex;align-items:center;gap:6px;text-decoration:none;margin-top:6px}
+footer .bp-pie img{height:21px;width:auto}
 
 /* Formulario: no envía nada a ningún sitio, monta el texto y lo abre en WhatsApp */
 .form{background:#fff;border-radius:var(--rc);padding:clamp(24px,4vw,36px);max-width:620px;margin:0 auto;
@@ -340,7 +342,7 @@ S.push(`<section id="cta"><div class="wrap"><div class="box">
 
 S.push(`<footer><div class="wrap">
   © ${new Date().getFullYear()} ${esc(C.nombre)}${C.direccion ? ` · ${esc(C.direccion)}` : ''}
-  ${bp ? `<br><a href="https://barrypets.es/negocios/${bp.negocio}" target="_blank" rel="noopener">Reservas online con barrypets</a>` : ''}
+  ${bp ? `<br><a class="bp-pie" href="https://barrypets.es/negocios/${bp.negocio}" target="_blank" rel="noopener">Reservas online con <img src="assets/barrypets.png" alt="barrypets" width="96" height="21"></a>` : ''}
   ${C.demo ? '' : '<br><a href="legal.html#aviso">Aviso legal</a> · <a href="legal.html#privacidad">Política de privacidad</a>'}
 </div></footer>`);
 
