@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aviso legal y privacidad</title>
+<meta name="robots" content="noindex">
+<link rel="preload" href="assets/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Manrope;src:url(assets/manrope.woff2) format('woff2');font-weight:400 800;font-style:normal;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font:400 17px/1.7 Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#14171a;background:#fff;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:64px 24px 96px}
+a{color:var(--c,#0f766e)}
+h1{font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:48px}
+h2{font-size:26px;font-weight:800;letter-spacing:-.025em;margin:56px 0 18px;scroll-margin-top:24px}
+h3{font-size:18px;font-weight:700;margin:28px 0 8px}
+p,li{color:#4a555c;margin-bottom:14px}
+ul{padding-left:22px}
+.volver{display:inline-block;margin-bottom:40px;font-weight:700;text-decoration:none;font-size:15px}
+.act{font-size:14px;color:#8b959b;margin-top:56px;border-top:1px solid #eceef0;padding-top:24px}
+</style>
+</head>
+<body>
+<script src="config.js"></script>
+<div class="wrap" id="app"></div>
+<script>
+const C = CONFIG, L = C.legal || {};
+const esc = s => String(s ?? "").replace(/[<>&"]/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
+document.documentElement.style.setProperty('--c', C.color);
+document.title = `Aviso legal y privacidad · ${C.nombre}`;
+const titular = L.razonSocial || C.nombre;
+
+document.getElementById('app').innerHTML = `
+<a class="volver" href="index.html">← Volver a la web</a>
+<h1>Aviso legal y política de privacidad</h1>
+
+<h2 id="aviso">Aviso legal</h2>
+<p>En cumplimiento del artículo 10 de la Ley 34/2002 de Servicios de la Sociedad de la Información
+y de Comercio Electrónico (LSSI-CE), se informa de los siguientes datos del titular de este sitio web:</p>
+<ul>
+  <li><b>Titular:</b> ${esc(titular)}</li>
+  ${L.nif ? `<li><b>NIF/CIF:</b> ${esc(L.nif)}</li>` : ''}
+  <li><b>Domicilio:</b> ${esc(L.domicilio || C.direccion)}</li>
+  ${C.email ? `<li><b>Email de contacto:</b> <a href="mailto:${esc(C.email)}">${esc(C.email)}</a></li>` : ''}
+  ${C.telefono ? `<li><b>Teléfono:</b> ${esc(C.telefono)}</li>` : ''}
+  ${L.registro ? `<li><b>Datos registrales:</b> ${esc(L.registro)}</li>` : ''}
+</ul>
+
+<h3>Objeto</h3>
+<p>Este sitio web tiene carácter informativo. Su finalidad es dar a conocer los servicios de
+${esc(titular)} y facilitar el contacto con el negocio. No se realizan ventas ni contrataciones
+a través de la web.</p>
+
+<h3>Propiedad intelectual</h3>
+<p>Los contenidos de este sitio (textos, imágenes, logotipos y diseño) son titularidad de
+${esc(titular)} o se utilizan con autorización. Queda prohibida su reproducción o distribución
+sin consentimiento expreso.</p>
+
+<h3>Responsabilidad</h3>
+<p>${esc(titular)} procura que la información publicada sea correcta y esté actualizada, pero no
+garantiza la ausencia de errores. Los precios, horarios y servicios pueden variar; para
+información vinculante, contacta directamente con el negocio.</p>
+
+<h3>Legislación aplicable</h3>
+<p>Esta relación se rige por la legislación española. Para cualquier controversia serán competentes
+los juzgados y tribunales que correspondan conforme a la normativa vigente.</p>
+
+<h2 id="privacidad">Política de privacidad</h2>
+
+<h3>Responsable del tratamiento</h3>
+<p>${esc(titular)}${L.nif ? `, con NIF ${esc(L.nif)}` : ''}, con domicilio en
+${esc(L.domicilio || C.direccion)}${C.email ? ` y email de contacto <a href="mailto:${esc(C.email)}">${esc(C.email)}</a>` : ''}.</p>
+
+<h3>Qué datos recogemos</h3>
+<p>Esta web <b>no recoge datos por sí misma</b>. No incluye formularios, ni cookies, ni herramientas
+de analítica o publicidad, ni servicios de terceros que registren tu navegación.</p>
+<p>Solo tratamos los datos que nos facilitas voluntariamente cuando decides contactarnos por
+teléfono, correo electrónico o WhatsApp a través de los botones de esta web: normalmente tu
+nombre, tu número de teléfono y el motivo de tu consulta.</p>
+
+<h3>Para qué los usamos y con qué legitimación</h3>
+<p>Los usamos únicamente para atender tu consulta y, en su caso, gestionar la cita o el servicio
+que nos solicites. La base legal es tu consentimiento y la aplicación de medidas precontractuales
+a petición tuya (artículo 6.1.a y 6.1.b del RGPD).</p>
+
+<h3>Cuánto tiempo los conservamos</h3>
+<p>El tiempo necesario para atender tu solicitud y, después, durante los plazos legales de
+conservación que resulten aplicables. Transcurridos, se eliminan.</p>
+
+<h3>A quién se los comunicamos</h3>
+<p>No cedemos tus datos a terceros, salvo obligación legal. Si nos escribes por WhatsApp, ten en
+cuenta que ese servicio lo presta WhatsApp Ireland Limited (Meta) y se rige por sus propias
+condiciones y política de privacidad, ajenas a ${esc(titular)}.</p>
+${C.barrypets ? `<p>Las reservas online se hacen con barrypets (Barrypets SL, barrypets.es), el programa de gestión
+de ${esc(titular)}. Los datos que escribes al reservar (tu nombre, tu teléfono, tu correo si lo das y los de
+tu mascota) llegan a ${esc(titular)} a través de barrypets, que los trata por su cuenta para gestionar la cita.
+Al reservar se aplican también las condiciones y la política de privacidad de barrypets.</p>` : ''}
+
+<h3>Tus derechos</h3>
+<p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del
+tratamiento y portabilidad escribiendo a
+${C.email ? `<a href="mailto:${esc(C.email)}">${esc(C.email)}</a>` : esc(L.domicilio || C.direccion)},
+indicando tu solicitud y adjuntando copia de tu documento de identidad. También puedes presentar
+una reclamación ante la Agencia Española de Protección de Datos
+(<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
+
+<h3>Cookies</h3>
+<p>Esta web no utiliza cookies ni ninguna otra tecnología de seguimiento. Por eso no verás ningún
+aviso de cookies al navegar por ella.</p>
+
+<p class="act">Última actualización: ${new Date().toLocaleDateString('es-ES',{year:'numeric',month:'long'})}.</p>
+`;
+</script>
+</body>
+</html>

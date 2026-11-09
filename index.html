@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- ↓↓ RELLENAR POR CLIENTE. WhatsApp y Google no ejecutan JS: si esto va vacío, el enlace se ve como una URL pelada. -->
+<title>Oasis Can · Residencia canina familiar en El Espinar (Segovia)</title>
+<meta name="description" content="Residencia canina familiar sin jaulas y educación canina en El Espinar, Sierra de Guadarrama. Cuidados de enfermera veterinaria. Reserva online.">
+<meta property="og:title" content="Oasis Can">
+<meta property="og:description" content="Residencia canina familiar sin jaulas en la Sierra de Guadarrama. Reserva online.">
+<meta property="og:image" content="https://barrypets.github.io/oasiscan/assets/hero.jpg">
+<meta property="og:type" content="website">
+<!-- ↑↑ og:image: URL absoluta, menos de 300 KB -->
+<link rel="preload" href="assets/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fuente autoalojada (Manrope, licencia SIL OFL). Cero peticiones a terceros
+   => cero transferencia de IP a Google => la web no necesita banner de cookies. */
+@font-face{font-family:Manrope;src:url(assets/manrope.woff2) format('woff2');font-weight:400 800;font-style:normal;font-display:swap}
+:root{
+  --c:#0f766e;                                   /* acento: lo pone config.js */
+  --c-soft:color-mix(in srgb,var(--c) 9%,#fff);
+  --ink:#14171a;--mut:#6b757c;--line:#eceef0;--gris:#f6f7f8;
+  --r:24px;--rc:20px;--pad:110px;--barra:0px;
+  --out:cubic-bezier(.23,1,.32,1);
+  --suave:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font:400 17px/1.6 Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+section{padding:var(--pad) 0}
+.gris{background:var(--gris)}
+
+h1{font-size:clamp(40px,6.4vw,74px);font-weight:800;line-height:1.02;letter-spacing:-.04em}
+h2{font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.035em;line-height:1.08}
+.head{text-align:center;max-width:640px;margin:0 auto 60px}
+.head p{color:var(--mut);font-size:19px;margin-top:16px}
+.eyebrow{display:inline-block;text-transform:uppercase;letter-spacing:.15em;font-size:12px;font-weight:800;color:var(--c);margin-bottom:16px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:17px 32px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;transition:transform .16s var(--out),filter .2s ease,border-color .2s ease}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--c);color:#fff;box-shadow:0 12px 30px -12px var(--c)}
+.btn-w{background:#25d366;color:#fff;box-shadow:0 12px 30px -12px rgba(37,211,102,.95)}
+.btn-o{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+
+.btn-d{background:var(--ink);color:#fff}
+#reservar .bp{max-width:640px;margin:0 auto}
+#reservar .barrypets-reservar:has(>a){text-align:center}
+#reservar .bp-card{text-align:center;color:var(--mut);margin-top:28px}
+#reservar .bp-card a{color:var(--c);font-weight:700}
+.acts{display:flex;flex-wrap:wrap;gap:12px}
+
+#demo{background:var(--ink);color:#fff;text-align:center;padding:11px 16px;font-size:14px;font-weight:500}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px}
+.brand{font-weight:800;font-size:20px;letter-spacing:-.03em;text-decoration:none}
+.brand img{height:var(--logo,40px);width:auto}
+nav{display:flex;align-items:center;gap:30px}
+nav a:not(.btn){color:var(--mut);text-decoration:none;font-size:15px;font-weight:600}
+
+@media(max-width:920px){nav a:not(.btn){display:none}nav .btn{padding:13px 22px;font-size:15px}.brand img{height:calc(var(--logo,40px) * .8)}}
+
+/* Hero centrado, fondo blanco, foto grande redondeada debajo — patrón Tinker */
+#hero{padding:96px 0 0;text-align:center}
+#hero .txt{max-width:820px;margin:0 auto}
+#hero p.lead{margin:24px auto 34px;font-size:20px;color:var(--mut);max-width:56ch}
+#hero .acts{justify-content:center}
+.stars{display:inline-flex;align-items:center;gap:9px;background:var(--gris);border:1px solid var(--line);padding:9px 18px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:26px;text-decoration:none}
+.st{display:inline-flex;gap:2px;color:#ffb020}
+.stars .st{margin-right:2px}
+.shot{margin-top:72px;border-radius:var(--r);overflow:hidden;aspect-ratio:16/8;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 40%,#0d1418));box-shadow:0 40px 80px -40px rgba(16,22,26,.45)}
+.shot img{width:100%;height:100%;object-fit:cover}
+
+#cifras{padding:64px 0;border-block:1px solid var(--line)}
+#cifras .wrap{display:grid;gap:36px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));text-align:center}
+#cifras b{display:block;font-size:clamp(34px,4.4vw,46px);font-weight:800;letter-spacing:-.04em;color:var(--c)}
+#cifras span{font-size:15px;color:var(--mut);font-weight:500}
+
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--gris);border-radius:var(--rc);padding:34px 30px}
+.gris .card{background:#fff}
+
+.card .ic{width:52px;height:52px;border-radius:16px;background:var(--c-soft);color:var(--c);display:grid;place-items:center;margin-bottom:20px}
+.card h3{font-size:20px;font-weight:800;margin-bottom:10px;letter-spacing:-.02em}
+.card p{color:var(--mut);font-size:16px}
+
+#puntos ul{list-style:none;display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));max-width:900px;margin:0 auto}
+#puntos li{display:flex;gap:15px;align-items:flex-start;font-weight:600;font-size:17px}
+#puntos li i{flex:0 0 30px;height:30px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center}
+
+.gal{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
+.gal img{width:100%;height:320px;object-fit:cover;border-radius:var(--rc);background:var(--c-soft)}
+.gal img:first-child{grid-column:span 2}
+@media(max-width:780px){.gal{grid-template-columns:1fr 1fr}.gal img:first-child{grid-column:span 2}.gal img{height:210px}}
+
+.rev{background:#fff;border-radius:var(--rc);padding:32px;display:flex;flex-direction:column}
+.rev .st{margin-bottom:16px}
+.rev p{color:var(--mut);margin-bottom:20px;flex:1;font-size:17px}
+.rev b{font-weight:800;font-size:15px}
+.mas{text-align:center;margin-top:40px}
+
+#faq .wrap{max-width:780px}
+#faq details{border-bottom:1px solid var(--line)}
+#faq summary{cursor:pointer;list-style:none;padding:26px 48px 26px 0;font-weight:700;font-size:19px;position:relative;letter-spacing:-.015em}
+#faq summary::-webkit-details-marker{display:none}
+#faq summary i{position:absolute;right:6px;top:26px;color:var(--c);transition:transform .15s var(--out)}
+#faq details[open] summary i{transform:rotate(180deg)}
+#faq details p{color:var(--mut);padding:0 48px 26px 0}
+
+#donde .cols{display:grid;gap:60px;grid-template-columns:1fr 1fr;align-items:start;max-width:900px;margin:0 auto}
+@media(max-width:860px){#donde .cols{grid-template-columns:1fr}}
+#donde h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:24px}
+table{width:100%;border-collapse:collapse}
+td{padding:16px 0;border-bottom:1px solid var(--line);font-size:16px}
+td:first-child{font-weight:600}
+td:last-child{text-align:right;color:var(--mut)}
+.info{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+.info>span{color:var(--c);display:grid;place-items:center;height:26px}
+.info b{display:block;font-size:12px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
+.info a{font-weight:700;text-decoration:none;font-size:17px}
+
+
+#cta{text-align:center}
+#cta .box{background:var(--c);color:#fff;border-radius:32px;padding:clamp(56px,8vw,96px) 32px}
+#cta .box>h2+p{opacity:.92;margin:16px auto 36px;font-size:19px;max-width:46ch}
+#cta .acts{justify-content:center}
+#cta .btn-o{border:none}
+
+footer{padding:48px 0 calc(48px + var(--barra));font-size:14px;color:var(--mut);text-align:center;line-height:2.1;border-top:1px solid var(--line)}
+footer a{color:var(--mut)}
+
+/* Formulario: no envía nada a ningún sitio, monta el texto y lo abre en WhatsApp */
+.form{background:#fff;border-radius:var(--rc);padding:clamp(24px,4vw,36px);max-width:620px;margin:0 auto;
+      display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));text-align:left}
+.form .full{grid-column:1/-1}
+.form label{display:block;font-size:13px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.form input,.form select,.form textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;
+      border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;transition:border-color .18s var(--suave)}
+.form textarea{min-height:104px;resize:vertical}
+.form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='none' stroke='%236b757c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:42px}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--c)}
+.form input:user-invalid,.form textarea:user-invalid{border-color:#d64545}
+.form .btn{width:100%;appearance:none;-webkit-appearance:none;border:none;box-shadow:none;font-family:inherit;cursor:pointer}
+.form .nota{font-size:13px;color:var(--mut);text-align:center;line-height:1.5}
+#cta .box .otro{margin-top:26px;font-size:15px;opacity:.92}
+#cta .box .otro a{font-weight:800}
+
+/* El hover solo donde hay ratón de verdad */
+@media(hover:hover) and (pointer:fine){
+  .btn:hover{filter:brightness(1.05)}
+  .btn-o:hover{border-color:var(--ink);filter:none}
+  nav a:not(.btn):hover{color:var(--ink)}
+  .info a:hover{color:var(--c)}
+  #faq summary:hover{color:var(--c)}
+}
+:focus-visible{outline:2.5px solid var(--c);outline-offset:3px;border-radius:6px}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn:active{transform:none;filter:brightness(.94)}
+  #faq summary i{transition:none}
+}
+
+/* Barra fija móvil: convierte mucho más que el globo flotante de WhatsApp */
+#barra{display:none}
+@media(max-width:760px){
+  :root{--barra:78px;--pad:76px}
+  #hero{padding-top:64px}
+  .shot{margin-top:48px;aspect-ratio:4/3}
+  header,#barra{backdrop-filter:none;background:rgba(255,255,255,.97)}
+  #barra{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 14px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+  #barra .btn{padding:16px 10px;font-size:16px;gap:7px}
+  #cifras{padding:40px 0}
+  #cifras .wrap{grid-template-columns:1fr 1fr;gap:24px 12px}
+  .head{margin-bottom:36px}.head p{font-size:17px}
+  .grid{gap:12px}
+  .card{padding:20px;display:grid;grid-template-columns:44px 1fr;column-gap:16px;align-items:start}
+  .card .ic{width:44px;height:44px;border-radius:13px;margin:0;grid-row:span 2}
+  .card h3{font-size:18px;margin-bottom:4px}
+  .card p{font-size:15px}
+  #hero p.lead{font-size:18px}
+  #hero .acts .btn{flex:1 1 100%}
+  #hero .en-barra{display:none}          /* ya están en la barra de abajo */
+}
+</style>
+</head>
+<body>
+<script src="config.js"></script>
+<script>
+const ICONS={"award":"<path d=\"m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526\" /> <circle cx=\"12\" cy=\"8\" r=\"6\" />","baby":"<path d=\"M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5\" /> <path d=\"M15 12h.01\" /> <path d=\"M19.38 6.813A9 9 0 0 1 20.8 10.2a2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1\" /> <path d=\"M9 12h.01\" />","bike":"<circle cx=\"18.5\" cy=\"17.5\" r=\"3.5\" /> <circle cx=\"5.5\" cy=\"17.5\" r=\"3.5\" /> <circle cx=\"15\" cy=\"5\" r=\"1\" /> <path d=\"M12 17.5V14l-3-3 4-3 2 3h2\" />","bone":"<path d=\"M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z\" />","book-open":"<path d=\"M12 5v16\" /> <path d=\"M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z\" />","briefcase":"<path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\" /> <rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\" />","building-2":"<path d=\"M10 12h4\" /> <path d=\"M10 8h4\" /> <path d=\"M14 21v-3a2 2 0 0 0-4 0v3\" /> <path d=\"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2\" /> <path d=\"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16\" />","calendar":"<path d=\"M8 2v3\" /> <path d=\"M16 2v3\" /> <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" /> <path d=\"M3 9h18\" />","camera":"<path d=\"M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z\" /> <circle cx=\"12\" cy=\"13\" r=\"3\" />","car":"<path d=\"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2\" /> <circle cx=\"7\" cy=\"17\" r=\"2\" /> <path d=\"M9 17h6\" /> <circle cx=\"17\" cy=\"17\" r=\"2\" />","clock":"<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M12 6v6l4 2\" />","coffee":"<path d=\"M10 2v2\" /> <path d=\"M14 2v2\" /> <path d=\"M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1\" /> <path d=\"M6 2v2\" />","credit-card":"<rect width=\"20\" height=\"14\" x=\"2\" y=\"5\" rx=\"2\" /> <line x1=\"2\" x2=\"22\" y1=\"10\" y2=\"10\" />","drill":"<path d=\"M10 18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a3 3 0 0 1-3-3 1 1 0 0 1 1-1z\" /> <path d=\"M13 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1l-.81 3.242a1 1 0 0 1-.97.758H8\" /> <path d=\"M14 4h3a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-3\" /> <path d=\"M18 6h4\" /> <path d=\"m5 10-2 8\" /> <path d=\"m7 18 2-8\" />","dumbbell":"<path d=\"M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z\" /> <path d=\"m2.5 21.5 1.4-1.4\" /> <path d=\"m20.1 3.9 1.4-1.4\" /> <path d=\"M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z\" /> <path d=\"m9.6 14.4 4.8-4.8\" />","flame":"<path d=\"M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4\" />","flower":"<circle cx=\"12\" cy=\"12\" r=\"3\" /> <path d=\"M12 16.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 1 1 4.5 4.5 4.5 4.5 0 1 1-4.5 4.5\" /> <path d=\"M12 7.5V9\" /> <path d=\"M7.5 12H9\" /> <path d=\"M16.5 12H15\" /> <path d=\"M12 16.5V15\" /> <path d=\"m8 8 1.88 1.88\" /> <path d=\"M14.12 9.88 16 8\" /> <path d=\"m8 16 1.88-1.88\" /> <path d=\"M14.12 14.12 16 16\" />","gift":"<path d=\"M12 7v14\" /> <path d=\"M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8\" /> <path d=\"M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5\" /> <rect x=\"3\" y=\"7\" width=\"18\" height=\"4\" rx=\"1\" />","glasses":"<circle cx=\"6\" cy=\"15\" r=\"4\" /> <circle cx=\"18\" cy=\"15\" r=\"4\" /> <path d=\"M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2\" /> <path d=\"M2.5 13 5 7c.7-1.3 1.4-2 3-2\" /> <path d=\"M21.5 13 19 7c-.7-1.3-1.5-2-3-2\" />","graduation-cap":"<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\" /> <path d=\"M22 10v6\" /> <path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\" />","hammer":"<path d=\"m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9\" /> <path d=\"m18 15 4-4\" /> <path d=\"m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5\" />","hand-platter":"<path d=\"M12 3V2\" /> <path d=\"m15.4 17.4 3.2-2.8a2 2 0 1 1 2.8 2.9l-3.6 3.3c-.7.8-1.7 1.2-2.8 1.2h-4c-1.1 0-2.1-.4-2.8-1.2l-1.302-1.464A1 1 0 0 0 6.151 19H5\" /> <path d=\"M2 14h12a2 2 0 0 1 0 4h-2\" /> <path d=\"M4 10h16\" /> <path d=\"M5 10a7 7 0 0 1 14 0\" /> <path d=\"M5 14v6a1 1 0 0 1-1 1H2\" />","heart":"<path d=\"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5\" />","house":"<path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\" /> <path d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\" />","key-round":"<path d=\"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z\" /> <circle cx=\"16.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\" />","laptop":"<path d=\"M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z\" /> <path d=\"M20.054 15.987H3.946\" />","leaf":"<path d=\"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z\" /> <path d=\"M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12\" />","mail":"<path d=\"m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7\" /> <rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\" />","map-pin":"<path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\" /> <circle cx=\"12\" cy=\"10\" r=\"3\" />","music":"<path d=\"M9 18V5l12-2v13\" /> <circle cx=\"6\" cy=\"18\" r=\"3\" /> <circle cx=\"18\" cy=\"16\" r=\"3\" />","package":"<path d=\"M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z\" /> <path d=\"M12 22V12\" /> <polyline points=\"3.29 7 12 12 20.71 7\" /> <path d=\"m7.5 4.27 9 5.15\" />","paintbrush":"<path d=\"m14.622 17.897-10.68-2.913\" /> <path d=\"M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z\" /> <path d=\"M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15\" />","paw-print":"<circle cx=\"11\" cy=\"4\" r=\"2\" /> <circle cx=\"18\" cy=\"8\" r=\"2\" /> <circle cx=\"20\" cy=\"16\" r=\"2\" /> <path d=\"M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z\" />","phone":"<path d=\"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384\" />","scissors":"<circle cx=\"6\" cy=\"6\" r=\"3\" /> <path d=\"M8.12 8.12 12 12\" /> <path d=\"M20 4 8.12 15.88\" /> <circle cx=\"6\" cy=\"18\" r=\"3\" /> <path d=\"M14.8 14.8 20 20\" />","shield-check":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\" /> <path d=\"m9 12 2 2 4-4\" />","shirt":"<path d=\"M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z\" />","siren":"<path d=\"M7 18v-6a5 5 0 1 1 10 0v6\" /> <path d=\"M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z\" /> <path d=\"M21 12h1\" /> <path d=\"M18.5 4.5 18 5\" /> <path d=\"M2 12h1\" /> <path d=\"M12 2v1\" /> <path d=\"m4.929 4.929.707.707\" /> <path d=\"M12 12v6\" />","smile":"<path d=\"M15 10V9\" /> <path d=\"M16.472 15a6 6 0 01-8.943 0\" /> <path d=\"M9 10V9\" /> <circle cx=\"12\" cy=\"12\" r=\"10\" />","snowflake":"<path d=\"m10 20-1.25-2.5L6 18\" /> <path d=\"M10 4 8.75 6.5 6 6\" /> <path d=\"m14 20 1.25-2.5L18 18\" /> <path d=\"m14 4 1.25 2.5L18 6\" /> <path d=\"m17 21-3-6h-4\" /> <path d=\"m17 3-3 6 1.5 3\" /> <path d=\"M2 12h6.5L10 9\" /> <path d=\"m20 10-1.5 2 1.5 2\" /> <path d=\"M22 12h-6.5L14 15\" /> <path d=\"m4 10 1.5 2L4 14\" /> <path d=\"m7 21 3-6-1.5-3\" /> <path d=\"m7 3 3 6h4\" />","sofa":"<path d=\"M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3\" /> <path d=\"M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z\" /> <path d=\"M4 18v2\" /> <path d=\"M20 18v2\" /> <path d=\"M12 4v9\" />","sparkles":"<path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\" /> <path d=\"M20 2v4\" /> <path d=\"M22 4h-4\" /> <circle cx=\"4\" cy=\"20\" r=\"2\" />","spray-can":"<path d=\"M3 3h.01\" /> <path d=\"M7 5h.01\" /> <path d=\"M11 7h.01\" /> <path d=\"M3 7h.01\" /> <path d=\"M7 9h.01\" /> <path d=\"M3 11h.01\" /> <rect width=\"4\" height=\"4\" x=\"15\" y=\"5\" /> <path d=\"m19 9 2 2v10c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1V11l2-2\" /> <path d=\"m13 14 8-2\" /> <path d=\"m13 19 8-2\" />","star":"<path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\" />","stethoscope":"<path d=\"M11 2v2\" /> <path d=\"M5 2v2\" /> <path d=\"M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1\" /> <path d=\"M8 15a6 6 0 0 0 12 0v-3\" /> <circle cx=\"20\" cy=\"10\" r=\"2\" />","syringe":"<path d=\"m18 2 4 4\" /> <path d=\"m17 7 3-3\" /> <path d=\"M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5\" /> <path d=\"m9 11 4 4\" /> <path d=\"m5 19-3 3\" /> <path d=\"m14 4 6 6\" />","truck":"<path d=\"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2\" /> <path d=\"M15 18H9\" /> <path d=\"M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14\" /> <circle cx=\"17\" cy=\"18\" r=\"2\" /> <circle cx=\"7\" cy=\"18\" r=\"2\" />","users":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" /> <path d=\"M16 3.128a4 4 0 0 1 0 7.744\" /> <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\" /> <circle cx=\"9\" cy=\"7\" r=\"4\" />","utensils":"<path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\" /> <path d=\"M7 2v20\" /> <path d=\"M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7\" />","wine":"<path d=\"M8 22h8\" /> <path d=\"M7 10h10\" /> <path d=\"M12 15v7\" /> <path d=\"M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z\" />","wrench":"<path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z\" />","zap":"<path d=\"M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z\" />","instagram":"<rect width=\"20\" height=\"20\" x=\"2\" y=\"2\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M17.5 6.5h.01\"/>","check":"<path d=\"M20 6 9 17l-5-5\"/>","chevron-down":"<path d=\"m6 9 6 6 6-6\"/>","badge-check":"<path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\" /> <path d=\"m9 12 2 2 4-4\" />","battery-charging":"<path d=\"m11 7-3 5h4l-3 5\" /> <path d=\"M14.856 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.935\" /> <path d=\"M22 14v-4\" /> <path d=\"M5.14 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2.936\" />","car-front":"<path d=\"m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8\" /> <path d=\"M7 14h.01\" /> <path d=\"M17 14h.01\" /> <rect width=\"18\" height=\"8\" x=\"3\" y=\"10\" rx=\"2\" /> <path d=\"M5 18v2\" /> <path d=\"M19 18v2\" />","circle-check":"<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"m9 12 2 2 4-4\" />","clipboard-check":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\" /> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\" /> <path d=\"m9 14 2 2 4-4\" />","cog":"<path d=\"M11 10.27 7 3.34\" /> <path d=\"m11 13.73-4 6.93\" /> <path d=\"M12 22v-2\" /> <path d=\"M12 2v2\" /> <path d=\"M14 12h8\" /> <path d=\"m17 20.66-1-1.73\" /> <path d=\"m17 3.34-1 1.73\" /> <path d=\"M2 12h2\" /> <path d=\"m20.66 17-1.73-1\" /> <path d=\"m20.66 7-1.73 1\" /> <path d=\"m3.34 17 1.73-1\" /> <path d=\"m3.34 7 1.73 1\" /> <circle cx=\"12\" cy=\"12\" r=\"2\" /> <circle cx=\"12\" cy=\"12\" r=\"8\" />","disc-3":"<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M6 12c0-1.7.7-3.2 1.8-4.2\" /> <circle cx=\"12\" cy=\"12\" r=\"2\" /> <path d=\"M18 12c0 1.7-.7 3.2-1.8 4.2\" />","droplet":"<path d=\"M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z\" />","fuel":"<path d=\"M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 4 0v-6.998a2 2 0 0 0-.59-1.42L18 5\" /> <path d=\"M14 21V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16\" /> <path d=\"M2 21h13\" /> <path d=\"M3 9h11\" />","gauge":"<path d=\"m12 14 4-4\" /> <path d=\"M3.34 19a10 10 0 1 1 17.32 0\" />","thermometer":"<path d=\"M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z\" />","wind":"<path d=\"M12.8 19.6A2 2 0 1 0 14 16H2\" /> <path d=\"M17.5 8a2.5 2.5 0 1 1 2 4H2\" /> <path d=\"M9.8 4.4A2 2 0 1 1 11 8H2\" />"};
+const icon=(n,s=24,w=1.75)=>ICONS[n]?`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`:'';
+const estrellas=(n=5,s=15)=>`<span class="st">`+`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor" aria-hidden="true">${ICONS.star}</svg>`.repeat(n)+`</span>`;
+const C = CONFIG;
+const tel = C.telefono ? C.telefono.replace(/[^\d+]/g,"") : "";
+const wa  = C.whatsapp ? C.whatsapp.replace(/\D/g,"") : "";
+if (wa && (wa.length < 11 || wa.startsWith("0")))
+  console.warn("AVISO: whatsapp debe llevar prefijo de país sin +, p.ej. 34600112233 — recibido:", C.whatsapp);
+const waUrl = wa ? `https://wa.me/${wa}?text=${encodeURIComponent(C.whatsappMensaje||"Hola")}` : "";
+const esc = s => String(s ?? "").replace(/[<>&"]/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
+const has = k => Array.isArray(C[k]) && C[k].length;
+// Reservas de barrypets: solo con un id de negocio limpio (va dentro de un atributo y de una URL)
+const bp = C.barrypets && /^[\w-]{1,60}$/.test(C.barrypets.negocio || "") ? C.barrypets : null;
+
+document.documentElement.style.setProperty('--c', C.color);
+if (C.logoAlto) document.documentElement.style.setProperty('--logo', C.logoAlto + 'px');
+
+// El formulario no manda nada a ningún servidor: arma el texto y abre WhatsApp con él.
+// Por eso la web sigue sin recoger datos, sin cookies y sin banner.
+function enviarWa(f){
+  const campos = CONFIG.formulario.campos;
+  const lineas = campos
+    .map(c => [c.etiqueta, (f.elements[c.id].value || "").trim()])
+    .filter(([, v]) => v)
+    .map(([e, v]) => `${e}: ${v}`);
+  const texto = (CONFIG.formulario.intro || "Hola,") + "\n\n" + lineas.join("\n");
+  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+  return false;
+}
+
+const S = [];
+const g = C.google;
+
+if (C.demo) S.push(`<div id="demo">Demo preparada para <b>${esc(C.nombre)}</b>. Los botones funcionan de verdad, pruébalos</div>`);
+
+S.push(`<header><div class="wrap">
+  <a class="brand" href="#">${C.logo ? `<img src="${esc(C.logo)}" alt="${esc(C.nombre)}">` : esc(C.nombre)}</a>
+  <nav>
+    ${has('servicios') ? '<a href="#servicios">Servicios</a>' : ''}
+    ${bp               ? '<a href="#reservar">Reservar</a>'  : ''}
+    ${has('galeria')   ? '<a href="#galeria">Galería</a>'     : ''}
+    ${has('faq')       ? '<a href="#faq">Preguntas</a>'       : ''}
+    ${has('horario')   ? '<a href="#donde">Dónde estamos</a>' : ''}
+    ${bp ? `<a class="btn btn-p" href="#reservar">Reservar</a>` : tel ? `<a class="btn btn-d" href="tel:${tel}">Llamar</a>` : ''}
+  </nav>
+</div></header>`);
+
+S.push(`<section id="hero"><div class="wrap">
+  <div class="txt">
+    ${g ? `<a class="stars" href="${esc(g.url||'#')}" target="_blank" rel="noopener">${estrellas(5,14)} ${esc(g.nota)} · ${esc(g.resenas)} reseñas en Google</a>` : ''}
+    <h1>${esc(C.claim)}</h1>
+    <p class="lead">${esc(C.subclaim)}</p>
+    <div class="acts">
+      ${bp ? `<a class="btn btn-p en-barra" href="#reservar">Reservar online</a>` : ''}
+      ${waUrl ? `<a class="btn btn-w en-barra" href="${waUrl}" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>` : ''}
+      ${tel ? `<a class="btn btn-o" href="tel:${tel}">Llamar al ${esc(C.telefono)}</a>` : ''}
+    </div>
+  </div>
+  <div class="shot">${C.hero ? `<img src="${esc(C.hero)}" alt="${esc(C.nombre)}" onerror="this.remove()">` : ''}</div>
+</div></section>`);
+
+if (has('cifras')) S.push(`<section id="cifras"><div class="wrap">
+  ${C.cifras.map(c=>`<div><b>${esc(c[0])}</b><span>${esc(c[1])}</span></div>`).join("")}
+</div></section>`);
+
+// Servicios, precios y huecos salen en directo de barrypets: aquí no se copia nada
+if (bp) S.push(`<section id="reservar"><div class="wrap">
+  <div class="head"><div class="eyebrow">Reserva online</div><h2>${esc(bp.titulo||"Reserva en un minuto")}</h2>
+  <p>${esc(bp.texto||"Elige el servicio y el día. La confirmación te llega al momento.")}</p></div>
+  <div class="bp"><div class="barrypets-reservar" data-negocio="${bp.negocio}"${/^[\w-]{1,60}$/.test(bp.local||"") ? ` data-local="${bp.local}"` : ''} data-formato="${bp.formato === "boton" ? "boton" : "servicios"}" data-color="${esc(C.color)}"></div></div>
+  ${bp.tarjeta ? `<p class="bp-card">¿Ya eres cliente? <a href="https://barrypets.es/tarjeta/${bp.negocio}" target="_blank" rel="noopener">Hazte la tarjeta de cliente</a> y acumula sellos en cada visita.</p>` : ''}
+</div></section>`);
+
+if (has('servicios')) S.push(`<section id="servicios"><div class="wrap">
+  <div class="head"><div class="eyebrow">Servicios</div><h2>Qué hacemos</h2>
+  <p>Todo lo que necesitas en un mismo sitio, con el precio claro desde el primer día.</p></div>
+  <div class="grid">${C.servicios.map(s=>`<div class="card"><div class="ic">${icon(s.icono,26)}</div><h3>${esc(s.titulo)}</h3><p>${esc(s.texto)}</p></div>`).join("")}</div>
+</div></section>`);
+
+
+if (has('galeria')) S.push(`<section id="galeria" class="gris"><div class="wrap">
+  <div class="head"><div class="eyebrow">Instalaciones</div><h2>Así trabajamos</h2>
+  <p>Un vistazo a dónde vas a estar y a cómo lo hacemos.</p></div>
+  <div class="gal">${C.galeria.map(x=>`<img src="${esc(x)}" alt="${esc(C.nombre)}" loading="lazy" onerror="this.remove()">`).join("")}</div>
+</div></section>`);
+
+if (has('puntos')) S.push(`<section id="puntos"><div class="wrap">
+  <div class="head"><div class="eyebrow">Por qué nosotros</div><h2>Lo que nos diferencia</h2>
+  <p>Las razones por las que la gente del barrio vuelve.</p></div>
+  <ul>${C.puntos.map(p=>`<li><i>${icon("check",15,3)}</i>${esc(p)}</li>`).join("")}</ul>
+</div></section>`);
+
+if (has('resenas')) S.push(`<section id="resenas" class="gris"><div class="wrap">
+  <div class="head"><div class="eyebrow">Opiniones</div><h2>Lo que dicen de nosotros</h2>
+  <p>Reseñas reales de clientes en Google${g?`, con una media de ${esc(g.nota)} sobre 5`:''}.</p></div>
+  <div class="grid">${C.resenas.map(r=>`<div class="rev">${estrellas()}<p>“${esc(r.texto)}”</p><b>${esc(r.autor)}</b></div>`).join("")}</div>
+  ${g&&g.url ? `<div class="mas"><a class="btn btn-o" href="${esc(g.url)}" target="_blank" rel="noopener">Ver las ${esc(g.resenas)} reseñas en Google</a></div>` : ''}
+</div></section>`);
+
+if (has('faq')) S.push(`<section id="faq"><div class="wrap">
+  <div class="head"><div class="eyebrow">Dudas</div><h2>Preguntas frecuentes</h2>
+  <p>Lo que nos preguntan por teléfono todos los días.</p></div>
+  ${C.faq.map(f=>`<details><summary>${esc(f.p)}<i>${icon("chevron-down",22)}</i></summary><p>${esc(f.r)}</p></details>`).join("")}
+</div></section>`);
+
+if (has('horario') || C.direccion) S.push(`<section id="donde" class="gris"><div class="wrap">
+  <div class="head"><div class="eyebrow">Visítanos</div><h2>Dónde y cuándo</h2>
+  <p>Ven a vernos o escríbenos, lo que te venga mejor.</p></div>
+  <div class="cols">
+    <div><h3>Horario</h3><table>${(C.horario||[]).map(h=>`<tr><td>${esc(h[0])}</td><td>${esc(h[1])}</td></tr>`).join("")}</table></div>
+    <div><h3>Contacto</h3>
+      ${C.direccion ? `<div class="info"><span>${icon("map-pin",20)}</span><div><b>Dirección</b><a href="${esc(C.mapa||'#')}" target="_blank" rel="noopener">${esc(C.direccion)}</a></div></div>` : ''}
+      ${tel ? `<div class="info"><span>${icon("phone",20)}</span><div><b>Teléfono</b><a href="tel:${tel}">${esc(C.telefono)}</a></div></div>` : ''}
+      ${C.email ? `<div class="info"><span>${icon("mail",20)}</span><div><b>Email</b><a href="mailto:${esc(C.email)}">${esc(C.email)}</a></div></div>` : ''}
+      ${C.instagram ? `<div class="info"><span>${icon("instagram",20)}</span><div><b>Instagram</b><a href="${esc(C.instagram)}" target="_blank" rel="noopener">Síguenos</a></div></div>` : ''}
+    </div>
+  </div>
+</div></section>`);
+
+const F = (C.formulario && waUrl) ? C.formulario : null;
+const campo = c => {
+  const req = c.requerido ? ' required' : '';
+  const ph = c.pista ? ` placeholder="${esc(c.pista)}"` : '';
+  const dentro = c.tipo === 'lista'
+    ? `<select id="${c.id}" name="${c.id}"${req}><option value="" disabled selected>Elige una opción</option>${c.opciones.map(o=>`<option>${esc(o)}</option>`).join("")}</select>`
+    : c.tipo === 'area'
+    ? `<textarea id="${c.id}" name="${c.id}"${req}${ph} maxlength="${c.max||400}"></textarea>`
+    : `<input type="text" id="${c.id}" name="${c.id}"${req}${ph}>`;
+  const ancho = (c.tipo === 'lista' || c.tipo === 'area' || c.ancho === 'completo') ? ' full' : '';
+  return `<div class="${ancho.trim()}"><label for="${c.id}">${esc(c.etiqueta)}</label>${dentro}</div>`;
+};
+
+S.push(`<section id="cta"><div class="wrap"><div class="box">
+  <h2>${esc(C.cta||"¿Hablamos?")}</h2><p>${esc(C.ctaTexto)}</p>
+  ${F ? `<form class="form" onsubmit="return enviarWa(this)">
+    ${F.campos.map(campo).join("")}
+    <div class="full"><button type="submit" class="btn btn-w">${esc(F.boton||"Enviar por WhatsApp")}</button></div>
+    <p class="nota full">Se abre WhatsApp con el mensaje ya escrito. Lo revisas y le das a enviar.</p>
+  </form>
+  ${tel ? `<p class="otro">¿Prefieres hablar? Llámanos al <a href="tel:${tel}">${esc(C.telefono)}</a></p>` : ''}`
+  : `<div class="acts">
+    ${waUrl ? `<a class="btn btn-o" href="${waUrl}" target="_blank" rel="noopener">Escribir por WhatsApp</a>` : ''}
+    ${tel ? `<a class="btn btn-d" href="tel:${tel}">Llamar al ${esc(C.telefono)}</a>` : ''}
+  </div>`}
+</div></div></section>`);
+
+S.push(`<footer><div class="wrap">
+  © ${new Date().getFullYear()} ${esc(C.nombre)}${C.direccion ? ` · ${esc(C.direccion)}` : ''}<br>
+  ${C.demo ? '' : '<a href="legal.html#aviso">Aviso legal</a> · <a href="legal.html#privacidad">Política de privacidad</a>'}
+</div></footer>`);
+
+if (waUrl || tel) S.push(`<div id="barra">
+  ${bp ? `<a class="btn btn-p" href="#reservar">${icon("calendar",18)} Reservar</a>`
+       : tel ? `<a class="btn btn-d" href="tel:${tel}">${icon("phone",18)} Llamar</a>` : ''}
+  ${waUrl ? `<a class="btn btn-w" href="${waUrl}" target="_blank" rel="noopener">WhatsApp</a>` : ''}
+</div>`);
+
+document.body.insertAdjacentHTML("beforeend", S.join(""));
+// insertAdjacentHTML no ejecuta <script>: el widget se carga aparte, después de pintar su caja.
+// De barrypets.es: se actualiza solo en cada publicación de barrypets. Servicios, fotos y precios
+// los pide en directo en cada visita. bp.widget solo para usar una copia local mientras tanto.
+if (bp) { const w = Object.assign(document.createElement("script"), { src: bp.widget === "local" ? "assets/barrypets.js" : "https://barrypets.es/widget.js", async: true }); w.dataset.origin = "https://barrypets.es"; document.body.appendChild(w); }
+</script>
+</body>
+</html>

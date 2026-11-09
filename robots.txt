@@ -1,0 +1,4 @@
+# Demo sin vender: fuera de Google.
+# Si esta web se vende, HAY QUE BORRAR este fichero o su web real no se indexará nunca.
+User-agent: *
+Disallow: /
