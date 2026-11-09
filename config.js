@@ -15,15 +15,14 @@ const CONFIG = {
   whatsapp: "34622555468",
   whatsappMensaje: "Hola, he visto vuestra web y quería contaros quién es mi peludo",
   email: "oasiscansegovia@gmail.com",
-  direccion: "El Espinar, Sierra de Guadarrama (Segovia)",
-  mapa: "https://maps.google.com/?q=El+Espinar,+Segovia",
+  direccion: "40400 El Espinar (Segovia)",
+  mapa: "https://maps.google.com/?q=40400%20El%20Espinar",
   instagram: "",
 
   hero: "assets/hero.jpg",
 
   barrypets: {
     negocio: "XP9180KnKLSehlfZD7PJ2nGihg83",
-    widget: "local",                 // TEMPORAL: copia en assets/ hasta poder publicar barrypets.es. Luego, borra esta línea y assets/barrypets.js
     formato: "servicios",
     local: "",
     tarjeta: false,
@@ -66,7 +65,8 @@ const CONFIG = {
     { p: "¿Qué incluyen los programas de educación?", r: "Trabajo diario personalizado, informe final, un plan de trabajo para casa y seguimiento." }
   ],
 
-  horario: [],
+  // De barrypets (node desde-barrypets.mjs), 9 nov 2026
+  horario: [["Todos los días", "24 horas"]],
 
   formulario: {
     intro: "Hola, os cuento quién es mi peludo:",

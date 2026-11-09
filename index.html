@@ -48,6 +48,9 @@ h2{font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.035em;line-
 .btn-d{background:var(--ink);color:#fff}
 #reservar .bp{max-width:640px;margin:0 auto}
 #reservar .barrypets-reservar:has(>a){text-align:center}
+#reservar .bp-por{text-align:center;margin-top:28px;font-size:14px}
+#reservar .bp-por a{display:inline-flex;align-items:center;gap:6px;color:var(--mut);text-decoration:none;font-weight:600}
+#reservar .bp-por img{height:21px;width:auto;display:inline-block}
 #reservar .bp-card{text-align:center;color:var(--mut);margin-top:28px}
 #reservar .bp-card a{color:var(--c);font-weight:700}
 .acts{display:flex;flex-wrap:wrap;gap:12px}
@@ -258,6 +261,7 @@ if (bp) S.push(`<section id="reservar"><div class="wrap">
   <div class="head"><div class="eyebrow">Reserva online</div><h2>${esc(bp.titulo||"Reserva en un minuto")}</h2>
   <p>${esc(bp.texto||"Elige el servicio y el día. La confirmación te llega al momento.")}</p></div>
   <div class="bp"><div class="barrypets-reservar" data-negocio="${bp.negocio}"${/^[\w-]{1,60}$/.test(bp.local||"") ? ` data-local="${bp.local}"` : ''} data-formato="${bp.formato === "boton" ? "boton" : "servicios"}" data-color="${esc(C.color)}"></div></div>
+  <p class="bp-por"><a href="https://barrypets.es/negocios/${bp.negocio}" target="_blank" rel="noopener">Reservas con <img src="assets/barrypets.png" alt="barrypets" width="96" height="21"> · Ver nuestra ficha</a></p>
   ${bp.tarjeta ? `<p class="bp-card">¿Ya eres cliente? <a href="https://barrypets.es/tarjeta/${bp.negocio}" target="_blank" rel="noopener">Hazte la tarjeta de cliente</a> y acumula sellos en cada visita.</p>` : ''}
 </div></section>`);
 
@@ -335,8 +339,9 @@ S.push(`<section id="cta"><div class="wrap"><div class="box">
 </div></div></section>`);
 
 S.push(`<footer><div class="wrap">
-  © ${new Date().getFullYear()} ${esc(C.nombre)}${C.direccion ? ` · ${esc(C.direccion)}` : ''}<br>
-  ${C.demo ? '' : '<a href="legal.html#aviso">Aviso legal</a> · <a href="legal.html#privacidad">Política de privacidad</a>'}
+  © ${new Date().getFullYear()} ${esc(C.nombre)}${C.direccion ? ` · ${esc(C.direccion)}` : ''}
+  ${bp ? `<br><a href="https://barrypets.es/negocios/${bp.negocio}" target="_blank" rel="noopener">Reservas online con barrypets</a>` : ''}
+  ${C.demo ? '' : '<br><a href="legal.html#aviso">Aviso legal</a> · <a href="legal.html#privacidad">Política de privacidad</a>'}
 </div></footer>`);
 
 if (waUrl || tel) S.push(`<div id="barra">
@@ -347,9 +352,12 @@ if (waUrl || tel) S.push(`<div id="barra">
 
 document.body.insertAdjacentHTML("beforeend", S.join(""));
 // insertAdjacentHTML no ejecuta <script>: el widget se carga aparte, después de pintar su caja.
-// De barrypets.es: se actualiza solo en cada publicación de barrypets. Servicios, fotos y precios
-// los pide en directo en cada visita. bp.widget solo para usar una copia local mientras tanto.
-if (bp) { const w = Object.assign(document.createElement("script"), { src: bp.widget === "local" ? "assets/barrypets.js" : "https://barrypets.es/widget.js", async: true }); w.dataset.origin = "https://barrypets.es"; document.body.appendChild(w); }
+// barrypets.es/reservas.js sigue cada publicación de barrypets (se actualiza solo). Si aún no existe
+// o no responde, la copia de assets/. Servicios, fotos y precios: en directo en cada visita.
+if (bp) {
+  const carga = (src, siFalla) => { const w = Object.assign(document.createElement("script"), { src, async: true, onerror: siFalla }); w.dataset.origin = "https://barrypets.es"; document.body.appendChild(w); };
+  carga("https://barrypets.es/reservas.js", () => carga("assets/barrypets.js"));
+}
 </script>
 </body>
 </html>
