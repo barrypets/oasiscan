@@ -93,10 +93,10 @@ nav a:not(.btn){color:var(--mut);text-decoration:none;font-size:15px;font-weight
 #puntos li{display:flex;gap:15px;align-items:flex-start;font-weight:600;font-size:17px}
 #puntos li i{flex:0 0 30px;height:30px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center}
 
-.gal{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
-.gal img{width:100%;height:320px;object-fit:cover;border-radius:var(--rc);background:var(--c-soft)}
-.gal img:first-child{grid-column:span 2}
-@media(max-width:780px){.gal{grid-template-columns:1fr 1fr}.gal img:first-child{grid-column:span 2}.gal img{height:210px}}
+/* Cada foto entera, con su forma (vertical o apaisada), en columnas: nada se recorta */
+.gal{columns:3;column-gap:18px}
+.gal img{width:100%;height:auto;margin-bottom:18px;break-inside:avoid;border-radius:var(--rc);background:var(--c-soft)}
+@media(max-width:780px){.gal{columns:2;column-gap:10px}.gal img{margin-bottom:10px;border-radius:14px}}
 
 .rev{background:#fff;border-radius:var(--rc);padding:32px;display:flex;flex-direction:column}
 .rev .st{margin-bottom:16px}
